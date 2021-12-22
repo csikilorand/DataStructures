@@ -44,3 +44,4 @@ class DoublyLinkedList:
             return
         if element is None:
             raise ValueError("Element must be not None")
+        pass

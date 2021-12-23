@@ -27,6 +27,12 @@ def testDoublyLinkedList():
     myList.addHead(0)
     myList.addHead(1)
     myList.addHead(100)
+    myList.addTail(99)
+    myList.addTail(990)
+    myList.addAtIndex(2, -90)
+    myList.addAtIndex(2, -50)
+    myList.addAfterElement(-90, 299)
+    myList.addBeforeElement(1, 600)
     print("Size: " + str(myList.getSize()))
     myList.display()
 def main():

@@ -1,0 +1,2 @@
+# DataStructuresAndAlgorithms
+For educational purposes

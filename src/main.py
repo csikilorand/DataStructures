@@ -35,6 +35,13 @@ def testDoublyLinkedList():
     myList.addBeforeElement(1, 600)
     print("Size: " + str(myList.getSize()))
     myList.display()
+    print("Now removing part...\n")
+    myList.removeHead()
+    myList.removeTail()
+    print("Size: " + str(myList.getSize()))
+    myList.display()
+
+
 def main():
     #testLinked_list()
     testDoublyLinkedList()

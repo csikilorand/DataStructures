@@ -25,10 +25,22 @@ class DoublyLinkedList:
             print('{}'.format(trav.data))
             trav = trav.next
 
-
-    def addHead(self, element: T):
+    def checkForNone(self, element: T):
         if element is None:
             raise ValueError("Element must be not None")
+
+
+    def checkForValidIndex(self,  index: int):
+        if index <0 or index >= self.getSize():
+            raise ValueError("index must >0 and <size")
+
+
+    def checkForEmptiness():
+        if self.isEmpty():
+            raise Exception("Can not remove from an empty List")
+
+    def addHead(self, element: T):
+        self.checkForNone( element)
         if self.head is None:
             self.head = self.tail = self.Node(element)
         else:
@@ -42,8 +54,7 @@ class DoublyLinkedList:
         if self.head is None:
             self.addHead(element)
             return
-        if element is None:
-            raise ValueError("Element must be not None")
+        self.checkForNone(element)
         newNode = self.Node(element)
         self.tail.next = newNode
         newNode.prev = self.tail
@@ -57,10 +68,8 @@ class DoublyLinkedList:
         if index == self.size-1:
             self.addTail(element)
             return
-        if element is None:
-            raise ValueError("Element must be not None")
-        if index <0 and index >= self.size:
-            raise ValueError("index must <0 and >=size")
+        self.checkForNone(element)
+        self.checkForValidIndex(index)
         trav = self.head.next
         i:int =1
         while i != index:
@@ -74,8 +83,8 @@ class DoublyLinkedList:
         self.size += 1
 
     def addAfterElement(self, element: T, new_element: T):
-        if element is None or new_element is None:
-            raise ValueError("Element must be not None")
+        self.checkForNone(element)
+        self.checkForNone(new_element)
         if element == self.tail:
             self.addTail(new_element)
             return
@@ -95,8 +104,8 @@ class DoublyLinkedList:
         raise ValueError("Element not found")
 
     def addBeforeElement(self, element: T, new_element: T):
-        if element is None or new_element is None:
-            raise ValueError("Element must be not None")
+        self.checkForNone(element)
+        self.checkForNone(new_element)
         if self.size ==0 :
             self.addHead(new_element)
             return
@@ -122,14 +131,25 @@ class DoublyLinkedList:
         raise ValueError("Element not found")
 
     def removeHead(self):
-        if self.isEmpty():
-            raise Exception("Can not remove from an empty List")
-        pass
+        if  self.head.next is not None:
+            self.head = self.head.next
+            self.head.prev = None
+            self.size -= 1
+        else:
+            self.head.next =  self.tail.prev = None
+            self.size  =0
+
     def removeTail(self):
         if self.isEmpty():
             raise Exception("Can not remove from an empty List")
-        
-        self.size -= 1
+        if self.tail.prev is not None:
+            self.tail = self.tail.prev
+            self.tail.next = None
+            self.size -= 1
+        else:
+            self.tail.prev = None
+            self.size = 0
+
     def removeAtIndex(self, index: int):
         pass
     def removeAfterElement(self, element: T):

@@ -35,7 +35,7 @@ class DoublyLinkedList:
             raise ValueError("index must >0 and <size")
 
 
-    def checkForEmptiness():
+    def checkForEmptiness(self):
         if self.isEmpty():
             raise Exception("Can not remove from an empty List")
 
@@ -140,8 +140,7 @@ class DoublyLinkedList:
             self.size  =0
 
     def removeTail(self):
-        if self.isEmpty():
-            raise Exception("Can not remove from an empty List")
+        self.checkForEmptiness()
         if self.tail.prev is not None:
             self.tail = self.tail.prev
             self.tail.next = None
@@ -151,8 +150,65 @@ class DoublyLinkedList:
             self.size = 0
 
     def removeAtIndex(self, index: int):
-        pass
-    def removeAfterElement(self, element: T):
-        pass
-    def removeBeforeElement(self, element: T):
-        pass
+        self.checkForValidIndex(index)
+        self.checkForEmptiness()
+        if index ==0:
+            self.removeHead()
+            return
+        if index == self.size-1:
+             self.removeTail()
+             return
+        i: int =1
+        trav= self.head.next
+        while trav:
+            i += 1
+            trav= trav.next
+            if i == index:
+                trav.prev.next = trav.next
+                trav.next.rev = trav.prev
+                trav.next = None
+                trav.prev = None
+                self.size -= 1
+                return
+
+    def removeElement(self, element: T):
+        self.checkForEmptiness()
+        self.checkForEmptiness()
+        if self.head.data == element:
+            self.removeHead()
+            return
+        if self.tail.data == element:
+            self.removeTail()
+            return
+        trav = self.head.next
+        while trav.data != element :
+            if trav.next == self.tail:
+                raise ValueError("Element not found")
+            trav = trav.next
+        trav.prev.next = trav.next
+        trav.next.prev = trav.prev
+        trav.next = trav.prev = None
+        self.size -= 1
+
+    def getIndexOfElement(self, element: T) -> int:
+        self.checkForNone(element)
+        i: int = 0
+        trav = self.head
+        while trav.data != element:
+             i += 1
+             if (trav == self.tail) and  (trav.data != element):
+                raise ValueError("Element not found")
+        trav = trav.next
+        return i
+
+    def getElementByIndex(self, index:int) -> T:
+        self.checkForValidIndex(index)
+        i: int =0
+        trav = self.head
+        while i != index:
+            trav= trav.next
+        return trav.data
+
+
+
+

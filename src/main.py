@@ -40,10 +40,31 @@ def testDoublyLinkedList():
     myList.removeTail()
     print("Size: " + str(myList.getSize()))
     myList.display()
+    myList.removeAtIndex(3)
+    myList.removeAtIndex(2)
+    myList.removeAtIndex(myList.getSize()-1)
+    print("Size: " + str(myList.getSize()))
+    myList.display()
 
+def testStackLinkedList():
+    from stacks import stack_linked_list
+    myStack = stack_linked_list.StackLinkedList()
+    myStack.push(0)
+    myStack.push(2)
+    myStack.push(-3)
+    print(myStack.peek())
+    print("Size: " + str(myStack.getSize()))
+    myStack.pop()
+    print(myStack.peek())
+    myStack.pop()
+    print(myStack.peek())
+    print(myStack.pop())
+
+    print(myStack.getSize())
 
 def main():
     #testLinked_list()
-    testDoublyLinkedList()
+    #testDoublyLinkedList()
+    testStackLinkedList()
 
 main()

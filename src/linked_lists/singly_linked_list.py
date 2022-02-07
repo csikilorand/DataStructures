@@ -27,6 +27,17 @@ class SinglyLinkedList:
             trav = trav.next
         return False
 
+    def clear(self):
+        if self.isEmpty():
+            return
+        trav = self.head
+        temp = trav
+        while trav:
+            trav = trav.next
+            temp.data = temp.next = None
+            temp = trav
+        self.size = 0
+
     def display(self):
         trav = self.head
       #  print(type(trav))
@@ -47,8 +58,22 @@ class SinglyLinkedList:
             newNode.next = self.head
             self.head = newNode
             self.size += 1
-
+    def add(self, element: T):
+        if element is None:
+            raise ValueError("Element must be not None")
+        if self.isEmpty():
+            self.addHead(element)
+            return
+        trav = self.head
+        while trav:
+            trav= trav.next
+        newNode = self.Node(element)
+        trav.next = newNode
+        self.size += 1
     def addTail(self, element: T):
+        if self.head  is None:
+            self.addHead(element)
+            return
         if element is None:
             raise ValueError("Element must be not None")
         newNode = self.Node(element)
@@ -158,6 +183,8 @@ class SinglyLinkedList:
         self.size -= 1
 
     def removeTail(self):
+        if self.isEmpty():
+            raise ValueError("Can not remove from empty list")
         trav = self.head
         while trav.next is not self.tail:
             trav= trav.next

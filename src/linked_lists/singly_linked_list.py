@@ -65,10 +65,11 @@ class SinglyLinkedList:
             self.addHead(element)
             return
         trav = self.head
-        while trav:
+        while trav.next:
             trav= trav.next
         newNode = self.Node(element)
         trav.next = newNode
+        self.tail = newNode
         self.size += 1
     def addTail(self, element: T):
         if self.head  is None:
@@ -113,25 +114,6 @@ class SinglyLinkedList:
             return
         trav = self.head.next
         while trav.data != element:
-            trav = trav.next
-            if trav == self.tail:
-                raise ValueError("Element not found")
-        newNode = self.Node(new_element)
-        newNode.next = trav.next
-        trav.next = newNode
-        self.size += 1
-
-    def addBeforeElement(self, element: T, new_element: T):
-        if element is None or new_element is None:
-            raise ValueError("Nonetype not accepted")
-        if element == self.head.data:
-            self.addHead(new_element)
-            return
-        if element == self.tail.data:
-            self.addTail(new_element)
-            return
-        trav = self.head.next
-        while trav.next.data != element:
             trav = trav.next
             if trav == self.tail:
                 raise ValueError("Element not found")

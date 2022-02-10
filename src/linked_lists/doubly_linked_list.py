@@ -39,6 +39,21 @@ class DoublyLinkedList:
         if self.isEmpty():
             raise Exception("Can not remove from an empty List")
 
+    def add(self, element: T):
+        self.checkForNone(element)
+        if self.head is None:
+            self.addHead(element)
+            return
+        trav = self.head
+        while trav.next:
+            trav = trav.next
+        newNode = self.Node(element)
+        trav.next = newNode
+        self.size += 1
+
+
+
+
     def addHead(self, element: T):
         self.checkForNone( element)
         if self.head is None:

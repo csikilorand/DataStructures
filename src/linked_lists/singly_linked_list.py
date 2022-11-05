@@ -3,10 +3,15 @@ from typing import TypeVar
 T = TypeVar('T')
 class SinglyLinkedList:
     class Node:
+        data:T
+        next:None
         def __init__(self, data: T):
             self.data = data
             self.next = None
 
+    head:Node
+    tail:Node
+    size:int
     def __init__(self):
         self.head = self.tail = None
         self.size = 0

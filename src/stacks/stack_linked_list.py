@@ -2,11 +2,16 @@ from typing import TypeVar
 T = TypeVar('T')
 
 class StackLinkedList:
+
     class Node:
+        data:T
+        next:None
         def __init__(self, data: T):
             self.data = data
             self.next = None
 
+    top: Node
+    size: int
     def __init__(self):
         self.top = None
         self.size = 0

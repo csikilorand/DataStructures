@@ -6,21 +6,21 @@ import unittest
 class DoublyLinkedListTest(unittest.TestCase):
     def setUp(self):
         self.index: int = 0
-        self.myList = doubly_linked_list.DoublyLinkedList()
+        self.doublyLinkedList = doubly_linked_list.DoublyLinkedList()
 
     def test_create_empty_list(self):
-        self.assertEqual(self.myList.getSize(), self.index)
+        self.assertEqual(self.doublyLinkedList.getSize(), self.index)
 
     @patch('builtins.print')
     def test_add_elements(self, mocked_print):
-        self.myList.add(100)
+        self.doublyLinkedList.add(100)
         self.index += 1
-        self.myList.add(200)
+        self.doublyLinkedList.add(200)
         self.index += 1
-        self.myList.add(300)
+        self.doublyLinkedList.add(300)
         self.index += 1
-        self.assertEqual(self.myList.getSize(), self.index)
-        self.myList.display()
+        self.assertEqual(self.doublyLinkedList.getSize(), self.index)
+        self.doublyLinkedList.display()
         mocked_print.assert_called_with('300')
 
 

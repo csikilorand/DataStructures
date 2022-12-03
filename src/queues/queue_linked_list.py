@@ -17,7 +17,7 @@ class MyQueueLinkedList:
         return self.size
 
     def enqueue(self, data):
-        if self.__isEmpty__():
+        if self.isEmpty():
             self.top.data = data
             self.top.next = self.ListNode()
             self.size += 1
@@ -31,10 +31,14 @@ class MyQueueLinkedList:
         self.size += 1
 
     def dequeue(self):
-        if self.__isEmpty__():
+        if self.isEmpty():
             raise ValueError("Can not remove from empty queue")
         tempNode = self.bottom
         self.bottom = self.bottom.next
         self.size -= 1
-        return tempNode
+        return tempNode.data
 
+    def getTopElement(self):
+        if not self.isEmpty():
+            return self.top.data
+        raise ValueError("Can not get element from empty queue")
